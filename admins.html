@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إدارة المدراء</title>
+    <style>
+        body { font-family: Arial; direction: rtl; padding: 20px; background-color: #f5f5f5; }
+        h2 { color: #333; }
+        table { width: 100%; border-collapse: collapse; background-color: white; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: right; }
+        th { background-color: #eee; }
+        .error { color: red; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h2>👥 إدارة المسؤولين</h2>
+    <div id="admins-error" class="error"></div>
+    <table id="admins-table">
+        <thead>
+            <tr>
+                <th>الاسم</th>
+                <th>البريد الإلكتروني</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        fetch('get_admins.php')
+            .then(res => res.text())
+            .then(text => {
+                try {
+                    const admins = JSON.parse(text);
+                    const tbody = document.querySelector("#admins-table tbody");
+
+                    if (admins.length === 0) {
+                        document.getElementById("admins-error").textContent = "لا يوجد مسؤولين حالياً.";
+                        return;
+                    }
+
+                    admins.forEach(admin => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${admin.name}</td>
+                            <td>${admin.email}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                } catch (err) {
+                    document.getElementById("admins-error").textContent = "حدث خطأ في قراءة المسؤولين.";
+                    console.error("JSON Error:", text);
+                }
+            })
+            .catch(error => {
+                document.getElementById("admins-error").textContent = "تعذر تحميل المسؤولين.";
+                console.error("Fetch Error:", error);
+            });
+    </script>
+
+</body>
+</html>

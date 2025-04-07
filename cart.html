@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السلة - متجر هير ريفايف</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- الهيدر -->
+    <header>
+        <div class="top-bar">
+            <p>خصومات خاصة بمناسبة اليوم الوطني الإماراتي!</p>
+            <div class="top-bar-right">
+                <!-- زر البريد الإلكتروني -->
+                <a href="mailto:hair.revive2019.com" class="contact-button">
+                    <i class="fas fa-envelope"></i>
+                    <span>hair.revive2019.com</span>
+                </a>
+                <!-- زر الواتساب -->
+                <a href="https://wa.me/971557402639" class="contact-button">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>+971 55 740 2639</span>
+                </a>
+                <!-- زر تبديل اللغة -->
+                <button id="switch-lang" class="language-button">
+                    <a href="careE.html">
+                        <img src="images/uae.png" alt="English" class="flag-icon">
+                    </a>
+                    <span id="lang-text">ع</span>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="شعار المتجر">
+            </div>
+            <ul class="menu">
+                <li><a href="index.html">العروض</a></li>
+                <li><a href="herbs.html">الأعشاب</a></li>
+                <li><a href="masks.html">الماسكات & الكريمات</a></li>
+                <li><a href="oils.html">الزيوت & التونر</a></li>
+                <li><a href="care.html">مستلزمات العناية</a></li>
+                <li><a href="incense.html">البخور</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="ابحث عن منتج...">
+                <button>بحث</button>
+            </div>
+            <div class="signup-icon">
+                <a href="sign up.html">
+                    <i class="fas fa-user-plus"></i> <!-- أيقونة تسجيل -->
+                </a>
+            </div>
+            <div class="cart-icon">
+                <a href="cart.html"><img src="images/cart.png" alt="سلة التسوق"></a>
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- محتوى صفحة السلة -->
+    <main class="cart">
+        <h1>سلة التسوق</h1>
+        <div class="cart-items">
+            <div class="cart-item">
+                <img src="images/sandal incense l.jpg" alt="صورة المنتج">
+                <div class="item-info">
+                    <h3>اسم المنتج</h3>
+                    <p>50 د.إ</p>
+                    <div class="quantity">
+                        <label for="quantity">الكمية:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" value="1">
+                    </div>
+                    <button class="remove-item">إزالة</button>
+                </div>
+            </div>
+            <!-- يمكن إضافة المزيد من العناصر هنا -->
+        </div>
+        <div class="cart-summary">
+            <h2>ملخص الطلب</h2>
+            <p>الإجمالي: 50 د.إ</p>
+            <a href="checkout.html">
+
+            <button class="checkout">الدفع</button>
+        </div>
+    </main>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><img src="images/insta-01.png" alt="إنستغرام"></a>
+            <a href="https://www.tiktok.com/@hair.revive1"><img src="images/tiktok-01.png" alt="تيك توك"></a>
+            <a href="#"><img src="images/facebook-01.png" alt="فيسبوك"></a>
+        </div>
+        <p>&copy; 2024 متجر هير ريفايف. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

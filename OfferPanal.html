@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة العروض</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+   
+    <style>
+        /* تنسيق النموذج */
+        #add-product-form {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+        }
+
+        #add-product-form h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #add-product-form label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        #add-product-form input,
+        #add-product-form textarea,
+        #add-product-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        #add-product-form input[type="file"] {
+            padding: 5px;
+        }
+
+        #add-product-form button {
+            background-color: #038C0C;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #add-product-form button:hover {
+            background-color: #026a07;
+        }
+
+        /* تنسيق الجدول */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .data-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .data-table img.product-image {
+            width: 80px; /* يمكنك تعديل هذا الحجم حسب الحاجة */
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-actions button {
+            margin: 5px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product-actions button:hover {
+            background-color: #45a049;
+        }
+        /* تنسيق أزرار التعديل والحذف */
+        .btn-edit, .btn-delete {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-edit {
+            background-color: #4CAF50; /* لون برتقالي لزر التعديل */
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background-color: #308933; /* لون أغمق عند التمرير */
+        }
+
+        .btn-edit:active {
+            transform: scale(0.95); /* تأثير الضغط */
+        }
+
+        .btn-delete {
+            background-color: #FF5252; /* لون أحمر لزر الحذف */
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #FF1744; /* لون أغمق عند التمرير */
+        }
+
+        .btn-delete:active {
+            transform: scale(0.95); /* تأثير الضغط */
+        }
+
+        /* أيقونات الأزرار */
+        .btn-edit i, .btn-delete i {
+            font-size: 16px;
+            color: #ddd;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+    
+        .header-icons a {
+            color: white !important; /* اللون الأبيض */
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+    
+        .header-icons a:hover {
+            color: #ddd !important; /* لون فاتح عند التمرير */
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <p>خصومات خاصة بمناسبة اليوم الوطني الإماراتي!</p>
+            <div class="top-bar-right">
+                <a href="mailto:hair.revive2019.com" class="contact-button">
+                    <i class="fas fa-envelope"></i>
+                    <span>hair.revive2019.com</span>
+                </a>
+                <a href="https://wa.me/971557402639" class="contact-button">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>+971 55 740 2639</span>
+                </a>
+                <a href="indexE.html" class="language-button">
+                    <img src="images/uae.png" alt="العربية" class="flag-icon">
+                    <span id="lang-text">ع</span>
+                </a>
+            </div>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="شعار المتجر">
+            </div>
+            <ul class="menu">
+                <li><a href="ProductsPanal2.html">إدارة المنتجات</a></li>
+                <li><a href="Admin Panal.html">إدارة المسؤولين</a></li>
+                <li><a href="OfferPanal.html">إدارة العروض</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="ابحث عن منتج...">
+                <button>بحث</button>
+            </div>
+            <div id="search-suggestions" style="display: none;"></div>
+            <div class="header-icons">
+                <a href="index.html" class="home-icon" title="الصفحة الرئيسية">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a href="sign up.html" class="signup-icon" title="تسجيل الدخول">
+                    <i class="fas fa-user-plus"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+<section id="manage-offers" class="management-section">
+    <h2>إدارة العروض</h2>
+    <button onclick="showAddOfferForm()" class="btn-primary">إضافة عرض جديد</button>
+
+    <!-- نموذج إضافة عرض -->
+    <div id="add-offer-form" style="display:none;">
+        <form id="offer-form" onsubmit="submitOffer(event)">
+            <input type="text" id="offer-name" placeholder="اسم العرض" required>
+            <input type="text" id="offer-discount" placeholder="الخصم" required>
+            <input type="date" id="offer-expiry" required>
+            <button type="submit">إضافة</button>
+        </form>
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>اسم العرض</th>
+                <th>الخصم</th>
+                <th>تاريخ الانتهاء</th>
+                <th>الإجراءات</th>
+            </tr>
+        </thead>
+        <tbody id="offer-list">
+            <!-- سيتم ملء هذا الجدول بالبيانات من قاعدة البيانات -->
+        </tbody>
+    </table>
+</section>
+
+<script>
+    function showAddOfferForm() {
+        document.getElementById('add-offer-form').style.display = 'block';
+    }
+
+    function submitOffer(event) {
+        event.preventDefault();
+        
+        const offerName = document.getElementById('offer-name').value;
+        const offerDiscount = document.getElementById('offer-discount').value;
+        const offerExpiry = document.getElementById('offer-expiry').value;
+
+        fetch('add_offer.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `name=${encodeURIComponent(offerName)}&discount=${encodeURIComponent(offerDiscount)}&expiry=${encodeURIComponent(offerExpiry)}`
+        }).then(response => response.text())
+          .then(data => {
+              alert(data);
+              loadOffers(); // إعادة تحميل العروض بعد الإضافة
+          });
+    }
+
+    function loadOffers() {
+        fetch('get_offers.php')
+            .then(response => response.json())
+            .then(data => {
+                const offerList = document.getElementById('offer-list');
+                offerList.innerHTML = '';
+                data.forEach(offer => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${offer.name}</td>
+                        <td>${offer.discount}</td>
+                        <td>${offer.expiry_date}</td>
+                        <td>
+                            <button onclick="editOffer(${offer.id})" class="btn-edit">تعديل</button>
+                            <button onclick="deleteOffer(${offer.id})" class="btn-delete">حذف</button>
+                        </td>
+                    `;
+                    offerList.appendChild(row);
+                });
+            });
+    }
+
+    function editOffer(id) {
+        alert('تعديل العرض مع ID: ' + id);
+    }
+
+    function deleteOffer(id) {
+        if (confirm('هل أنت متأكد من حذف هذا العرض؟')) {
+            fetch('delete_offer.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'id=' + id
+            }).then(response => response.text())
+            .then(data => {
+                alert(data);
+                loadOffers(); // إعادة تحميل العروض بعد الحذف
+            });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadOffers);
+</script>
+
+</body>
+</html>

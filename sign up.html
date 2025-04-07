@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>التسجيل - متجر هير ريفايف</title>
+        <link rel="stylesheet" href="styles.css">
+    
+        <!-- رابط أيقونات Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+<body>
+      <!-- الشريط العلوي -->
+      <header>
+        <div class="top-bar">
+            <p>خصومات خاصة بمناسبة اليوم الوطني الإماراتي!</p>
+            <div class="top-bar-right">
+                <!-- زر البريد الإلكتروني -->
+                <a href="mailto:hair.revive2019.com" class="contact-button">
+                    <i class="fas fa-envelope"></i>
+                    <span>hair.revive2019.com</span>
+                </a>
+                <!-- زر الواتساب -->
+                <a href="https://wa.me/971557402639" class="contact-button">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>+971 55 740 2639</span>
+                </a>
+                <!-- زر تبديل اللغة -->
+                <button id="switch-lang" class="language-button">
+                    <a href="sign upE.html">
+                        <img src="images/uae.png" alt="English" class="flag-icon">
+                    </a>
+                    <span id="lang-text">ع</span>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="شعار المتجر">
+            </div>
+            <ul class="menu">
+                <li><a href="index.html">العروض</a></li>
+                <li><a href="herbs.html">الأعشاب</a></li>
+                <li><a href="masks.html">الماسكات & الكريمات</a></li>
+                <li><a href="oils.html">الزيوت & التونر</a></li>
+                <li><a href="care.html">مستلزمات العناية</a></li>
+                <li><a href="incense.html">البخور</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="ابحث عن منتج...">
+                <button>بحث</button>
+            </div>
+            <div id="search-suggestions" style="display: none;"></div>
+
+            
+
+            <div class="signup-icon">
+                <a href="ProductsPanal2.html">
+                    <i class="fas fa-user-plus"></i> <!-- أيقونة تسجيل -->
+                </a>
+            </div>
+            <div class="cart-icon">
+                <a href="cart.html"><img src="images/cart.png" alt="سلة التسوق"></a>
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- المحتوى الرئيسي لصفحة الأعشاب -->
+   <!-- قسم المنتجات -->
+
+   <section class="products-section">
+   
+    <form id="registration-form" action="register.php" method="POST">
+        <table class="registration-table">
+            <tr>
+                <td><label for="username">الاسم الكامل:</label></td>
+                <td><input type="text" id="username" name="username" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">البريد الإلكتروني:</label></td>
+                <td><input type="email" id="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td><label for="phone">رقم الهاتف:</label></td>
+                <td><input type="tel" id="phone" name="phone" required></td>
+            </tr>
+            <tr>
+                <td><label for="address">العنوان:</label></td>
+                <td><input type="text" id="address" name="address" required></td>
+            </tr>
+            <tr>
+                <td><label for="password">كلمة المرور:</label></td>
+                <td><input type="password" id="password" name="password" required></td>
+            </tr>
+            <tr>
+                <td><label for="confirm-password">تأكيد كلمة المرور:</label></td>
+                <td><input type="password" id="confirm-password" name="confirm-password" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <button type="submit" class="submit-btn">تسجيل</button>
+                </td>
+        
+                            </tr>
+        </table>
+    </form>
+</section>
+
+    <p id="error-message" style="color: red; display: none;">كلمة المرور غير متطابقة!</p>
+  
+        
+        <br><br>
+   
+
+
+
+ <!-- تذييل الصفحة -->
+ <footer>
+    <div class="social-icons">
+        <a href="#"><img src="images/insta-01.png" alt="إنستغرام"></a>
+        <a href="https://www.tiktok.com/@hair.revive1"><img src="images/tiktok-01.png" alt="تيك توك"></a>
+        <a href="#"><img src="images/facebook-01.png" alt="فيسبوك"></a>
+    </div>
+    <p>&copy; 2024 متجر هير ريفايف. جميع الحقوق محفوظة.</p>
+</footer>
+
+
+<!-- زر التمرير للأعلى -->
+<button style="position: fixed;bottom: 20px;right: 20px;padding: 10px;background-color: #038C0C;color: white;border: none;cursor: pointer;display: block;">↑</button>
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', function (e) {
+            e.preventDefault(); // منع إرسال النموذج بالطريقة التقليدية
+
+            // استخراج القيم من الحقول
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // التحقق من تطابق كلمة المرور
+            if (password !== confirmPassword) {
+                errorMessage.style.display = 'block'; // إظهار رسالة الخطأ
+                return; // إيقاف الإرسال
+            } else {
+                errorMessage.style.display = 'none'; // إخفاء رسالة الخطأ
+            }
+
+            // إرسال البيانات إلى الخادم
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('address', address);
+            formData.append('password', password);
+
+            fetch('register.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('تم التسجيل بنجاح!');
+                } else {
+                    alert('حدث خطأ أثناء التسجيل: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.');
+            });
+        }); // <-- إغلاق دالة addEventListener
+    </script>
+
+    
+
+<script src="scripts.js">
+    alert("تم تحميل JavaScript");
+
+</script>
+</body>
+</html>

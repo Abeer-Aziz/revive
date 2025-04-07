@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدفع - متجر هير ريفايف</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* تنسيق النافذة المنبثقة */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            width: 90%;
+            max-width: 800px;
+            height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            overflow: hidden;
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+        }
+
+        .close-popup {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #aaa;
+        }
+
+        .close-popup:hover {
+            color: #000;
+        }
+
+        /* تقسيم النافذة إلى عمودين */
+        .popup-column {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .buyer-info {
+            background-color: #f8f9fa;
+        }
+
+        .payment-info {
+            background-color: #fff;
+        }
+
+        .popup-column h3 {
+            margin-top: 0;
+        }
+
+        .popup-column .form-group {
+            margin-bottom: 15px;
+        }
+
+        .popup-column label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .popup-column input,
+        .popup-column textarea,
+        .popup-column select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .popup button {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .popup button:hover {
+            background-color: #27ae60;
+        }
+
+        /* تنسيق رسالة التأكيد */
+        .confirmation-message {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #2ecc71;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .confirmation-message i {
+            margin-left: 10px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر -->
+    <header>
+        <div class="top-bar">
+            <p>خصومات خاصة بمناسبة اليوم الوطني الإماراتي!</p>
+            <div class="top-bar-right">
+                <!-- زر البريد الإلكتروني -->
+                <a href="mailto:hair.revive2019.com" class="contact-button">
+                    <i class="fas fa-envelope"></i>
+                    <span>hair.revive2019.com</span>
+                </a>
+                <!-- زر الواتساب -->
+                <a href="https://wa.me/971557402639" class="contact-button">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>+971 55 740 2639</span>
+                </a>
+                <!-- زر تبديل اللغة -->
+                <button id="switch-lang" class="language-button">
+                    <a href="careE.html">
+                        <img src="images/uae.png" alt="English" class="flag-icon">
+                    </a>
+                    <span id="lang-text">ع</span>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="شعار المتجر">
+            </div>
+            <ul class="menu">
+                <li><a href="index.html">العروض</a></li>
+                <li><a href="herbs.html">الأعشاب</a></li>
+                <li><a href="masks.html">الماسكات & الكريمات</a></li>
+                <li><a href="oils.html">الزيوت & التونر</a></li>
+                <li><a href="care.html">مستلزمات العناية</a></li>
+                <li><a href="incense.html">البخور</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="ابحث عن منتج...">
+                <button>بحث</button>
+            </div>
+            <div class="signup-icon">
+                <a href="sign up.html">
+                    <i class="fas fa-user-plus"></i> <!-- أيقونة تسجيل -->
+                </a>
+            </div>
+            <div class="cart-icon">
+                <a href="cart.html"><img src="images/cart.png" alt="سلة التسوق"></a>
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- محتوى صفحة الدفع -->
+    <main class="checkout-page">
+        <h1>إتمام عملية الشراء</h1>
+
+        <!-- تفاصيل الطلب وملخص الطلب -->
+        <section class="order-summary-container">
+            <div class="order-details">
+                <h2>تفاصيل الطلب</h2>
+                <div class="order-items">
+                    <!-- منتج 1 -->
+                    <div class="order-item">
+                        <img src="images/sandal incense l.jpg" alt="صورة المنتج">
+                        <div class="item-info">
+                            <h3>اسم المنتج</h3>
+                            <p>50 د.إ</p>
+                            <div class="quantity">
+                                <label for="quantity">الكمية:</label>
+                                <input type="number" id="quantity" name="quantity" min="1" value="1">
+                            </div>
+                            <p class="purchase-count"><i class="fas fa-fire" style="color: red;"></i> تم شراء هذا المنتج 15 مرة</p>
+                        </div>
+                    </div>
+                    <!-- منتج 2 -->
+                    <div class="order-item">
+                        <img src="images/mask sider 150.jpeg" alt="صورة المنتج">
+                        <div class="item-info">
+                            <h3>اسم المنتج 2</h3>
+                            <p>60 د.إ</p>
+                            <div class="quantity">
+                                <label for="quantity">الكمية:</label>
+                                <input type="number" id="quantity" name="quantity" min="1" value="1">
+                            </div>
+                            <p class="purchase-count"><i class="fas fa-fire" style="color: red;"></i> تم شراء هذا المنتج 20 مرة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ملخص الطلب -->
+            <div class="summary-details">
+                <h2>ملخص الطلب</h2>
+                <p>عدد المنتجات: <strong>2</strong></p>
+                <p>إجمالي المنتجات: 110 د.إ</p>
+                <p>رسوم الشحن: 10 د.إ</p>
+                <p>الإجمالي الكلي: <strong>120 د.إ</strong></p>
+                <button class="pay-now" onclick="openPaymentPopup()">تأكيد الدفع</button>
+            </div>
+        </section>
+
+<!-- النافذة المنبثقة لبيانات الدفع -->
+<div class="popup" id="payment-popup">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h2>إتمام عملية الشراء</h2>
+            <span class="close-popup" onclick="closePaymentPopup()">&times;</span>
+        </div>
+        <form action="#" method="POST" id="checkout-form">
+            <div class="popup-body">
+                <!-- العمود الأيمن: بيانات المشتري -->
+                <div class="buyer-info">
+                    <h3>معلومات المشتري</h3>
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">العنوان:</label>
+                        <textarea id="address" name="address" rows="2" placeholder="المدينة - الشارع - اسم البناية - رقم الشقة" required></textarea>
+                    </div>
+                </div>
+
+                <!-- العمود الأيسر: طريقة الدفع -->
+                <div class="payment-info">
+                    <h3>طريقة الدفع</h3>
+                    <div class="form-group">
+                        <label for="payment-method">اختر طريقة الدفع:</label>
+                        <select id="payment-method" name="payment-method" required onchange="togglePaymentDetails()">
+                            <option value="cash-on-delivery">الدفع عند الاستلام</option>
+                            <option value="credit-card">الدفع ببطاقة الائتمان</option>
+                        </select>
+                    </div>
+
+                    <!-- معلومات بطاقة الائتمان -->
+                    <div id="credit-card-details" style="display: none;">
+                        <div class="form-group">
+                            <label for="card-name">اسم حامل البطاقة:</label>
+                            <input type="text" id="card-name" name="card-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number">رقم البطاقة:</label>
+                            <input type="text" id="card-number" name="card-number">
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvc">CVC:</label>
+                            <input type="text" id="card-cvc" name="card-cvc" maxlength="3">
+                        </div>
+                        <div class="form-group">
+                            <label for="card-expiry">تاريخ الانتهاء:</label>
+                            <input type="month" id="card-expiry" name="card-expiry">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" id="confirm-order-btn" class="confirm-order" onclick="showConfirmationMessage()">تأكيد الطلب</button>
+        </form>
+    </div>
+</div>
+
+<!-- رسالة تأكيد الطلب -->
+<div class="confirmation-message" id="confirmation-message">
+    <p>تم تأكيد طلبك بنجاح! شكراً لتسوقك معنا.</p>
+    <i class="fas fa-check-circle"></i>
+</div>
+    </main>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><img src="images/insta-01.png" alt="إنستغرام"></a>
+            <a href="https://www.tiktok.com/@hair.revive1"><img src="images/tiktok-01.png" alt="تيك توك"></a>
+            <a href="#"><img src="images/facebook-01.png" alt="فيسبوك"></a>
+        </div>
+        <p>&copy; 2024 متجر هير ريفايف. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // فتح النافذة المنبثقة
+        function openPaymentPopup() {
+            document.getElementById("payment-popup").style.display = "flex";
+        }
+
+        // إغلاق النافذة المنبثقة
+        function closePaymentPopup() {
+            document.getElementById("payment-popup").style.display = "none";
+        }
+
+        // تبديل ظهور معلومات بطاقة الائتمان
+        function togglePaymentDetails() {
+            const paymentMethod = document.getElementById("payment-method").value;
+            const creditCardDetails = document.getElementById("credit-card-details");
+            if (paymentMethod === "credit-card") {
+                creditCardDetails.style.display = "block";
+            } else {
+                creditCardDetails.style.display = "none";
+            }
+        }
+
+        // عرض رسالة تأكيد الطلب
+        function showConfirmationMessage() {
+            document.getElementById("confirmation-message").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("confirmation-message").style.display = "none";
+            }, 5000); // تختفي الرسالة بعد 5 ثوانٍ
+        }
+    </script>
+</body>
+</html>

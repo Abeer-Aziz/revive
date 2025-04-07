@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المنتجات</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+
+    <style>
+        /* تنسيق النموذج */
+        #add-product-form {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+        }
+
+        #add-product-form h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #add-product-form label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        #add-product-form input,
+        #add-product-form textarea,
+        #add-product-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        #add-product-form input[type="file"] {
+            padding: 5px;
+        }
+
+        #add-product-form button {
+            background-color: #038C0C;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #add-product-form button:hover {
+            background-color: #026a07;
+        }
+
+        /* تنسيق الجدول */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .data-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .data-table img.product-image {
+            width: 80px; /* يمكنك تعديل هذا الحجم حسب الحاجة */
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-actions button {
+            margin: 5px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product-actions button:hover {
+            background-color: #45a049;
+        }
+        /* تنسيق أزرار التعديل والحذف */
+        .btn-edit, .btn-delete {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-edit {
+            background-color: #4CAF50; /* لون برتقالي لزر التعديل */
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background-color: #308933; /* لون أغمق عند التمرير */
+        }
+
+        .btn-edit:active {
+            transform: scale(0.95); /* تأثير الضغط */
+        }
+
+        .btn-delete {
+            background-color: #FF5252; /* لون أحمر لزر الحذف */
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #FF1744; /* لون أغمق عند التمرير */
+        }
+
+        .btn-delete:active {
+            transform: scale(0.95); /* تأثير الضغط */
+        }
+
+        /* أيقونات الأزرار */
+        .btn-edit i, .btn-delete i {
+            font-size: 16px;
+            color: #ddd;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+    
+        .header-icons a {
+            color: white !important; /* اللون الأبيض */
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+    
+        .header-icons a:hover {
+            color: #ddd !important; /* لون فاتح عند التمرير */
+            transform: scale(1.1);
+        }
+    </style>
+    
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <p>خصومات خاصة بمناسبة اليوم الوطني الإماراتي!</p>
+            <div class="top-bar-right">
+                <a href="mailto:hair.revive2019.com" class="contact-button">
+                    <i class="fas fa-envelope"></i>
+                    <span>hair.revive2019.com</span>
+                </a>
+                <a href="https://wa.me/971557402639" class="contact-button">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>+971 55 740 2639</span>
+                </a>
+                <a href="indexE.html" class="language-button">
+                    <img src="images/uae.png" alt="العربية" class="flag-icon">
+                    <span id="lang-text">ع</span>
+                </a>
+            </div>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="شعار المتجر">
+            </div>
+            <ul class="menu">
+                <li><a href="ProductsPanal2.html">إدارة المنتجات</a></li>
+                <li><a href="Admin Panal.html">إدارة المسؤولين</a></li>
+                <li><a href="OfferPanal.html">إدارة العروض</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="ابحث عن منتج...">
+                <button>بحث</button>
+            </div>
+            <div id="search-suggestions" style="display: none;"></div>
+            <div class="header-icons">
+                <a href="index.html" class="home-icon" title="الصفحة الرئيسية">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a href="sign up.html" class="signup-icon" title="تسجيل الدخول">
+                    <i class="fas fa-user-plus"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="manage-products" class="management-section">
+        <h2>إدارة المنتجات</h2>
+        <button onclick="showAddProductForm()" class="btn-primary">إضافة منتج جديد</button>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>صورة المنتج</th>
+                    <th>اسم المنتج</th>
+                    <th>السعر</th>
+                    <th>الكمية</th>
+                    <th>الوصف</th>
+                    <th>حالة التوفر</th>
+                    <th>الإجراءات</th>
+                    <th>التصنيف</th>
+                </tr>
+            </thead>
+            <tbody id="product-list">
+                <!-- بيانات المنتجات -->
+            </tbody>
+        </table>
+   
+        <!-- نموذج إضافة وتعديل المنتج -->
+        <div id="add-product-form" style="display: none;">
+            <h3>إضافة منتج جديد</h3>
+            <form action="manage_products.php" method="POST" enctype="multipart/form-data">
+                <label for="product-name">اسم المنتج:</label>
+                <input type="text" id="product-name" name="name" required><br>
+
+                <label for="product-price">السعر:</label>
+                <input type="number" id="product-price" name="price" step="0.01" required><br>
+
+                <label for="product-quantity">الكمية:</label>
+                <input type="number" id="product-quantity" name="quantity" required><br>
+
+                <label for="product-description">الوصف:</label>
+                <textarea id="product-description" name="description" required></textarea><br>
+
+                <label for="product-image">رفع الصورة:</label>
+                <input type="file" id="product-image" name="image" accept="image/*" required><br>
+
+                <label class="switch">التوفر:
+                    <input type="checkbox" class="availability-slider">
+                    <span class="slider"></span>
+                </label><br>
+
+                <label for="product-category">التصنيف:</label>
+                <select id="product-category" name="category" required>
+                    <option value="اعشاب">اعشاب</option>
+                    <option value="ماسكات">ماسكات</option>
+                    <option value="زيوت">زيوت</option>
+                    <option value="مستلزمات العناية">مستلزمات العناية</option>
+                    <option value="بخور">بخور</option>
+                </select><br>
+
+                <button type="submit" class="btn-primary">إضافة المنتج</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // دالة لإظهار نموذج إضافة منتج جديد
+        function showAddProductForm() {
+            document.getElementById('add-product-form').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المسؤولين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+    
+        /* زر إضافة مسؤول */
+        .btn-primary {
+            background-color: #038C0C;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+            margin-bottom: 10px;
+        }
+    
+        .btn-primary:hover {
+            background-color: #026a07;
+        }
+    
+        /* تصميم الجدول */
+        .data-table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+    
+        .data-table th, .data-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+    
+        .data-table th {
+            background-color: #f4f4f4;
+        }
+    
+        .btn-edit, .btn-delete {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 2px;
+        }
+    
+        .btn-edit {
+            background-color: #4CAF50;
+            color: white;
+        }
+    
+        .btn-delete {
+            background-color: #FF5252;
+            color: white;
+        }
+    
+        /* نموذج إضافة مسؤول */
+        #add-admin-form {
+            display: none;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 40%;
+            margin: auto;
+        }
+    
+        #add-admin-form input, #add-admin-form select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    
+        #add-admin-form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    
+        /* تنسيقات جديدة للأيقونات في الهيدر */
+        nav {
+            background-color: #000; /* خلفية سوداء للهيدر */
+        }
+        
+        .header-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+    
+        .header-icons a {
+            color: white !important; /* اللون الأبيض */
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+    
+        .header-icons a:hover {
+            color: #ddd !important; /* لون فاتح عند التمرير */
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>لوحة تحكم المتجر</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js" defer></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    </head>
+    <body>
+       <!-- الشريط العلوي -->
+       <header>
+        <div class="top-bar">
+            <p>خصومات خاصة بمناسبة اليوم الوطني الإماراتي!</p>
+            <div class="top-bar-right">
+                <a href="mailto:hair.revive2019.com" class="contact-button">
+                    <i class="fas fa-envelope"></i>
+                    <span>hair.revive2019.com</span>
+                </a>
+                <a href="https://wa.me/971557402639" class="contact-button">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>+971 55 740 2639</span>
+                </a>
+                <a href="indexE.html" class="language-button">
+                    <img src="images/uae.png" alt="العربية" class="flag-icon">
+                    <span id="lang-text">ع</span>
+                </a>
+            </div>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="شعار المتجر">
+            </div>
+            <ul class="menu">
+                <li><a href="ProductsPanal2.html">إدارة المنتجات</a></li>
+                <li><a href="Admin Panal.html">إدارة المسؤولين</a></li>
+                <li><a href="OfferPanal.html">إدارة العروض</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="ابحث عن منتج...">
+                <button>بحث</button>
+            </div>
+            <div id="search-suggestions" style="display: none;"></div>
+            <div class="header-icons">
+                <a href="index.html" class="home-icon" title="الصفحة الرئيسية">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a href="sign up.html" class="signup-icon" title="تسجيل الدخول">
+                    <i class="fas fa-user-plus"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+    
+    
+    <br><br><h2>إدارة المسؤولين</h2>
+ <!-- زر إضافة مسؤول -->
+    <button onclick="toggleAddForm()" class="btn-primary">إضافة مسؤول جديد</button>
+
+    <!-- نموذج إضافة مسؤول (مخفي افتراضيًا) -->
+  <!-- نموذج إضافة مسؤول -->
+<div id="add-admin-form">
+    <h3>إضافة مسؤول جديد</h3>
+    <form id="admin-form">
+        <label for="admin-name">الاسم:</label>
+        <input type="text" id="admin-name" name="name" required>
+
+        <label for="admin-role">الدور:</label>
+        <select id="admin-role" name="role" required>
+            <option value="مدير">مدير</option>
+            <option value="مشرف">مشرف</option>
+            <option value="مسؤول السوشيال ميديا">مسؤول السوشيال ميديا</option>
+        </select>
+
+        <button type="submit" class="btn-primary">إضافة</button>
+    </form>
+</div>
+
+<!-- جدول عرض المسؤولين -->
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>الاسم</th>
+            <th>الدور</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+        <tbody id="admin-list">
+            <tr data-id="1">
+                <td class="name-cell">محمد</td>
+                <td class="role-cell">مدير</td>
+                <td>
+                    <button onclick="startEditAdmin(1)" class="btn-edit">تعديل</button>
+                    <button onclick="deleteAdmin(1)" class="btn-delete">حذف</button>
+                </td>
+            </tr>
+        </tbody>
+            </tbody>
+</table>
+  </br>  </br>
+</br>
+
+<script>
+
+    // دالة لإظهار وإخفاء نموذج الإضافة
+    function toggleAddForm() {
+        let form = document.getElementById('add-admin-form');
+        form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+    }
+
+    // دالة إرسال البيانات عبر AJAX
+    document.getElementById('admin-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        let formData = new FormData(this);
+
+        fetch('add_admin.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('تمت إضافة المسؤول بنجاح!');
+                document.getElementById('admin-form').reset();
+                document.getElementById('add-admin-form').style.display = 'none';
+                location.reload();
+            } else {
+                alert('حدث خطأ: ' + data.error);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    function startEditAdmin(id) {
+        if (!id) {
+        console.error('خطأ: لم يتم تمرير ID بشكل صحيح');
+        return;
+    }
+
+    console.log('ID:', id); // ✅ تحقق مما إذا كان يتم تمرير id أم لا
+
+    let row = document.querySelector(`tr[data-id='${id}']`);
+    if (!row) {
+        console.error('خطأ: لا يوجد صف بهذا المعرف', id);
+        return;
+    }
+
+    let nameCell = row.querySelector(".name-cell");
+    let roleCell = row.querySelector(".role-cell");
+
+    if (!nameCell || !roleCell) {
+        console.error('خطأ: لم يتم العثور على خلايا الاسم أو الدور داخل الصف');
+        return;
+    }
+
+    let oldName = nameCell.innerText;
+    let oldRole = roleCell.innerText;
+
+    nameCell.innerHTML = `<input type="text" id="edit-name-${id}" value="${oldName}">`;
+    roleCell.innerHTML = `
+        <select id="edit-role-${id}">
+            <option value="مدير" ${oldRole === "مدير" ? "selected" : ""}>مدير</option>
+            <option value="مشرف" ${oldRole === "مشرف" ? "selected" : ""}>مشرف</option>
+            <option value="مسؤول السوشيال ميديا" ${oldRole === "مسؤول السوشيال ميديا" ? "selected" : ""}>مسؤول السوشيال ميديا</option>
+        </select>
+    `;
+
+    row.querySelector("td:last-child").innerHTML = `
+        <button onclick="saveEditAdmin(${id})" class="btn-primary">حفظ</button>
+        <button onclick="cancelEditAdmin(${id}, '${oldName}', '${oldRole}')" class="btn-delete">إلغاء</button>
+    `;
+}
+
+function saveEditAdmin(id) {
+    let newName = document.getElementById(`edit-name-${id}`).value;
+    let newRole = document.getElementById(`edit-role-${id}`).value;
+
+    let formData = new FormData();
+    formData.append('id', id);
+    formData.append('name', newName);
+    formData.append('role', newRole);
+
+    fetch('edit_admin.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload(); // أعد تحميل الصفحة للتأكد من عرض البيانات المحدثة
+        } else {
+            alert('حدث خطأ أثناء التعديل: ' + data.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function cancelEditAdmin(id, oldName, oldRole) {
+    let row = document.querySelector(`tr[data-id='${id}']`);
+    row.querySelector(".name-cell").innerText = oldName;
+    row.querySelector(".role-cell").innerText = oldRole;
+
+    row.querySelector("td:last-child").innerHTML = `
+        <button onclick="startEditAdmin(${id})" class="btn-edit">تعديل</button>
+        <button onclick="deleteAdmin(${id})" class="btn-delete">حذف</button>
+    `;
+}
+        
+    
+
+    // دالة لحذف المسؤول
+    function deleteAdmin(id) {
+        if (confirm('هل أنت متأكد من حذف هذا المسؤول؟')) {
+            fetch('delete_admin.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'id=' + encodeURIComponent(id)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('تم حذف المسؤول بنجاح!');
+                    location.reload();
+                } else {
+                    alert('خطأ: ' + data.error);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
+</script>
+
+<footer>
+    <div class="social-icons">
+        <a href="#"><img src="images/insta-01.png" alt="إنستغرام"></a>
+        <a href="https://www.tiktok.com/@hair.revive1"><img src="images/tiktok-01.png" alt="تيك توك"></a>
+        <a href="#"><img src="images/facebook-01.png" alt="فيسبوك"></a>
+    </div>
+    <p>&copy; 2024 متجر هير ريفايف. جميع الحقوق محفوظة.</p>
+</footer>
+
+</body>
+</html>

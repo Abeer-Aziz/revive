@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر هير ريفايف</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- رابط Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- رابط Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="top-bar">
+            <p>خصومات خاصة بمناسبة اليوم الوطني الإماراتي!</p>
+            <div class="top-bar-right">
+                <!-- زر البريد الإلكتروني -->
+                <a href="mailto:hair.revive2019.com" class="contact-button">
+                    <i class="fas fa-envelope"></i>
+                    <span>hair.revive2019.com</span>
+                </a>
+                <!-- زر الواتساب -->
+                <a href="https://wa.me/971557402639" class="contact-button">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>+971 55 740 2639</span>
+                </a>
+                <!-- زر تبديل اللغة -->
+                <button id="switch-lang" class="language-button">
+                    <a href="indexE.html">
+
+                    <img src="images/uae.png" alt="العربية" class="flag-icon" id="ar-flag"></a>
+                    <span id="lang-text">ع</span>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="شعار المتجر">
+            </div>
+            <ul class="menu">
+                <li><a href="index.html">العروض</a></li>
+                <li><a href="herbs.html">الأعشاب</a></li>
+                <li><a href="masks.html">الماسكات & الكريمات</a></li>
+                <li><a href="oils.html">الزيوت & التونر</a></li>
+                <li><a href="care.html">مستلزمات العناية</a></li>
+                <li><a href="incense.html">البخور</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="ابحث عن منتج...">
+                <button>بحث</button>
+            </div>
+            <div class="signup-icon">
+                <a href="sign up.html">
+                    <i class="fas fa-user-plus"></i> <!-- أيقونة تسجيل -->
+                </a>
+            </div>
+            <div class="cart-icon">
+                <a href="#"><img src="images/cart.png" alt="سلة التسوق"></a>
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- القسم الرئيسي -->
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide" style="background-image: url('images/slide1.jpg');">
+                    <div class="hero-content">
+                        <h1>أفضل المنتجات بأفضل الأسعار</h1>
+                        <p>تسوق الآن واستمتع بتجربة تسوق مميزة</p>
+                        <button class="cta-button">تسوق الآن</button>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide" style="background-image: url('images/slide2.jpg');">
+                    <div class="hero-content">
+                        <h1>خصومات تصل إلى 50%</h1>
+                        <p>لا تفوت الفرصة، تسوق الآن ووفر أكثر!</p>
+                        <button class="cta-button">تسوق الآن</button>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide" style="background-image: url('images/slide3.jpg');">
+                    <div class="hero-content">
+                        <h1>تشكيلة جديدة من الأعشاب</h1>
+                        <p>اكتشف منتجاتنا الطبيعية والعضوية</p>
+                        <button class="cta-button">تسوق الآن</button>
+                    </div>
+                </div>
+            </div>
+            <!-- إضافة Pagination (النقاط) -->
+            <div class="swiper-pagination"></div>
+            <!-- إضافة أزرار التنقل -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <script id="offers-data" type="application/json">
+        <?= json_encode($offers) ?>
+      </script>
+      
+    
+    <!-- رابط Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<!-- رابط ملف JavaScript الخاص بك -->
+<script src="script.js"></script>
+
+
+    <!-- أقسام المنتجات -->
+<!-- أحدث المنتجات -->
+<section class="latest-products">
+    <h2>أحدث المنتجات</h2>  <div class="products-grid">
+        <!-- منتج 1 -->
+        <div class="product-card">
+            <div class="product-badge out-of-stock">نفذ</div>
+            <img src="images/protection bag.jpeg" alt="منتج 1" class="product-image">
+            <h3 class="product-title">قبعة بلاستيك  10 حبات </h3>
+            <p class="product-description">قبعة بلاستيك للاستخدام مرة واحدة</p>
+            <div class="product-price">
+                <span class="original-price">5 د.إ</span>
+                <span class="discounted-price">5 د.إ</span>
+            </div>
+            <button class="add-to-cart">أضف إلى السلة</button>
+        </div>
+        <!-- منتج 2 -->
+        <div class="product-card">
+            <div class="product-badge available">متوفر</div>
+            <img src="images/sider powder k.jpeg" alt="منتج 2" class="product-image">
+            <h3 class="product-title">اسم المنتج 2</h3>
+            <p class="product-description">وصف قصير للمنتج 2</p>
+            <div class="product-price">
+                <span class="original-price">60 د.إ</span>
+            </div>
+            <button class="add-to-cart">أضف إلى السلة</button>
+        </div>
+
+             <!-- منتج 3 -->
+             <div class="product-card">
+                <div class="product-badge out-of-stock">نفذ</div>
+                <img src="images/mask sider 300.jpeg" alt="منتج 1" class="product-image">
+                <h3 class="product-title">اسم المنتج 1</h3>
+                <p class="product-description">وصف قصير للمنتج 1</p>
+                <div class="product-price">
+                    <span class="original-price">50 د.إ</span>
+                    <span class="discounted-price">40 د.إ</span>
+                </div>
+                <button class="add-to-cart">أضف إلى السلة</button>
+            </div>
+            <!-- منتج 4 -->
+            <div class="product-card">
+                <div class="product-badge available">متوفر</div>
+                <img src="images/bride package2.png" alt="منتج 2" class="product-image">
+                <h3 class="product-title">اسم المنتج 2</h3>
+                <p class="product-description">وصف قصير للمنتج 2</p>
+                <div class="product-price">
+                    <span class="original-price">60 د.إ</span>
+                </div>
+                <button class="add-to-cart">أضف إلى السلة</button>
+            </div>
+</section>
+
+<!-- المنتجات الأكثر مبيعًا -->
+<section class="best-sellers">
+    <h2>المنتجات الأكثر مبيعًا</h2>
+    <div class="products-grid">
+        <!-- منتج 1 -->
+        <div class="product-card">
+            <div class="product-badge out-of-stock">نفذ</div>
+            <img src="images/karkar3.jpeg" alt="منتج 1" class="product-image">
+            <h3 class="product-title">اسم المنتج 1</h3>
+            <p class="product-description">وصف قصير للمنتج 1</p>
+            <div class="product-price">
+                <span class="original-price">50 د.إ</span>
+                <span class="discounted-price">40 د.إ</span>
+            </div>
+            <button class="add-to-cart">أضف إلى السلة</button>
+        </div>
+        <!-- منتج 2 -->
+        <div class="product-card">
+            <div class="product-badge available">متوفر</div>
+            <img src="images/wasmah 3.png" alt="منتج 2" class="product-image">
+            <h3 class="product-title">اسم المنتج 2</h3>
+            <p class="product-description">وصف قصير للمنتج 2</p>
+            <div class="product-price">
+                <span class="original-price">60 د.إ</span>
+            </div>
+            <button class="add-to-cart">أضف إلى السلة</button>
+        </div>
+
+             <!-- منتج 3 -->
+             <div class="product-card">
+                <div class="product-badge out-of-stock">نفذ</div>
+                <img src="images/gray pakeg S.jpeg" alt="منتج 1" class="product-image">
+                <h3 class="product-title">اسم المنتج 1</h3>
+                <p class="product-description">وصف قصير للمنتج 1</p>
+                <div class="product-price">
+                    <span class="original-price">50 د.إ</span>
+                    <span class="discounted-price">40 د.إ</span>
+                </div>
+                <button class="add-to-cart">أضف إلى السلة</button>
+            </div>
+            <!-- منتج 4 -->
+            <div class="product-card">
+                <div class="product-badge available">متوفر</div>
+                <img src="images/mask sider k.png" alt="منتج 2" class="product-image">
+                <h3 class="product-title">اسم المنتج 2</h3>
+                <p class="product-description">وصف قصير للمنتج 2</p>
+                <div class="product-price">
+                    <span class="original-price">60 د.إ</span>
+                </div>
+                <button class="add-to-cart">أضف إلى السلة</button>
+            </div>
+</section>
+
+
+    <!-- شهادات العملاء -->
+    <section class="testimonials">
+        <h2>ماذا يقول عملاؤنا؟</h2>
+        <div class="testimonial-cards">
+            <div class="testimonial-card">
+                <p>"تجربة تسوق ممتازة، المنتجات عالية الجودة والأسعار مناسبة."</p>
+                <p>- أحمد علي</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"خدمة عملاء رائعة وشحن سريع!"</p>
+                <p>- فاطمة محمد</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- عن الشركة -->
+    <section class="about-us">
+        <h2>عن الشركة</h2>
+        <p>نحن نقدم أفضل المنتجات بأعلى معايير الجودة.</p>
+        <img src="images/herbs cover-01.png" alt="فيديو الشركة">
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><img src="images/insta-01.png" alt="إنستغرام"></a>
+            <a href="https://www.tiktok.com/@hair.revive1"><img src="images/tiktok-01.png" alt="تيك توك"></a>
+            <a href="#"><img src="images/facebook-01.png" alt="فيسبوك"></a>
+        </div>
+        <p>&copy; 2024 متجر هير ريفايف. جميع الحقوق محفوظة.</p>
+    </footer>
+    <button style="position: fixed;bottom: 20px;right: 20px;padding: 10px;background-color: #038C0C;color: white;border: none;cursor: pointer;display: block;">↑</button>
+    
+    <script src="script.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-XXXXX-X');
+</script>
+<section class="hero-section" data-aos="fade-up">
+    <!-- المحتوى -->
+</section>
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

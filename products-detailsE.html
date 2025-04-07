@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Hair Revive Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <p>Special discounts for UAE National Day!</p>
+            <div class="top-bar-right">
+                <!-- Email Button -->
+                <a href="mailto:hair.revive2019.com" class="contact-button">
+                    <i class="fas fa-envelope"></i>
+                    <span>hair.revive2019.com</span>
+                </a>
+                <!-- WhatsApp Button -->
+                <a href="https://wa.me/971557402639" class="contact-button">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>+971 55 740 2639</span>
+                </a>
+                <!-- Language Switch Button -->
+                <button id="switch-lang" class="language-button">
+                    <a href="care.html">
+                        <img src="images/uae.png" alt="Arabic" class="flag-icon">
+                    </a>
+                    <span id="lang-text">EN</span>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="Store Logo">
+            </div>
+            <ul class="menu">
+                <li><a href="index.html">Offers</a></li>
+                <li><a href="herbs.html">Herbs</a></li>
+                <li><a href="masks.html">Masks & Creams</a></li>
+                <li><a href="oils.html">Oils & Toners</a></li>
+                <li><a href="care.html">Care Products</a></li>
+                <li><a href="incense.html">Incense</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for a product...">
+                <button>Search</button>
+            </div>
+            <div class="signup-icon">
+                <a href="sign up.html">
+                    <i class="fas fa-user-plus"></i> <!-- Sign Up Icon -->
+                </a>
+            </div>
+            <div class="cart-icon">
+                <a href="cart.html"><img src="images/cart.png" alt="Shopping Cart"></a>
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Product Details Section -->
+    <main>
+        <!-- Product Details -->
+        <section class="product-details">
+            <div class="product-images">
+                <!-- Main Image -->
+                <div class="main-image">
+                    <img id="main-image" src="images/deep cream 150.jpeg" alt="Main Image">
+                </div>
+                <!-- Thumbnail Images -->
+                <div class="thumbnail-images">
+                    <img src="images/tait hourse.jpg" alt="Thumbnail 1" onclick="changeMainImage('images/tait hourse.jpg')">
+                    <img src="images/mask sider 150.jpeg" alt="Thumbnail 2" onclick="changeMainImage('images/mask sider 150.jpeg')">
+                    <img src="images/aker fasi.jpeg" alt="Thumbnail 3" onclick="changeMainImage('images/aker fasi.jpeg')">
+                </div>
+            </div>
+            <div class="product-info">
+                <h1>Product Name</h1>
+                <p class="product-price">$50</p>
+                <p class="product-description">Product description here. This product is amazing and contains natural ingredients.</p>
+                <div class="quantity">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1">
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </section>
+
+        <!-- Related Products -->
+        <section class="related-products">
+            <h2>Related Products</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="images/sider powder 300.jpeg" alt="Related Product 1">
+                    <h3>Product Name 1</h3>
+                    <p>Short description for product 1</p>
+                    <div class="product-price">
+                        <span class="original-price">$50</span>
+                        <span class="discounted-price">$40</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="images/shaf incense m.jpg" alt="Related Product 2">
+                    <h3>Product Name 2</h3>
+                    <p>Short description for product 2</p>
+                    <div class="product-price">
+                        <span class="original-price">$60</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="images/mask sider 500.jpeg.jpg" alt="Related Product 3">
+                    <h3>Product Name 3</h3>
+                    <p>Short description for product 3</p>
+                    <div class="product-price">
+                        <span class="original-price">$70</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><img src="images/insta-01.png" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/@hair.revive1"><img src="images/tiktok-01.png" alt="TikTok"></a>
+            <a href="#"><img src="images/facebook-01.png" alt="Facebook"></a>
+        </div>
+        <p>&copy; 2024 Hair Revive Store. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
